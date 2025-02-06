@@ -1,0 +1,14 @@
+version: '3.8'
+services:
+  auth-service:
+    build: ./auth-service
+  user-service:
+    build: ./user-service
+  order-service:
+    build: ./order-service
+  payment-service:
+    build: ./payment-service
+  notification-service:
+    build: ./notification-service
+  api-gateway:
+    build: ./api-gateway
