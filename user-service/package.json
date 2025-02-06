@@ -8,10 +8,17 @@
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "description": "",
   "dependencies": {
     "@grpc/proto-loader": "^0.7.13",
+    "dotenv": "^16.4.7",
     "express": "^4.21.2",
     "grpc": "^1.24.11"
-  }
+  },
+  "devDependencies": {
+    "@types/express": "^5.0.0",
+    "@types/node": "^22.13.1",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.7.3"
+  },
+  "description": ""
 }
