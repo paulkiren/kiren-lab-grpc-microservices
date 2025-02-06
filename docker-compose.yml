@@ -2,13 +2,58 @@ version: '3.8'
 services:
   auth-service:
     build: ./auth-service
+    ports:
+      - "8080:8080"
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://db:5432/authdb
+    depends_on:
+      - db
+
   user-service:
     build: ./user-service
+    ports:
+      - "50051:50051"
+    depends_on:
+      - auth-service
+
   order-service:
     build: ./order-service
-  payment-service:
-    build: ./payment-service
-  notification-service:
-    build: ./notification-service
+    ports:
+      - "50052:50052"
+    depends_on:
+      - user-service
+
+  db:
+    image: postgres
+    environment:
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: authdb
+    ports:
+      - "5432:5432"
+
   api-gateway:
     build: ./api-gateway
+    ports:
+      - "8081:8081"
+    depends_on:
+      - auth-service
+      - user-service
+      - order-service
+
+
+# version: '3.8'
+# services:
+#   auth-service:
+#     build: ./auth-service
+#   user-service:
+#     build: ./user-service
+#   order-service:
+#     build: ./order-service
+#   payment-service:
+#     build: ./payment-service
+#   notification-service:
+#     build: ./notification-service
+#   api-gateway:
+#     build: ./api-gateway
+
