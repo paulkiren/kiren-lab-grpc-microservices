@@ -2,22 +2,29 @@ syntax = "proto3";
 
 package user;
 
+// The UserService provides methods to manage users.
 service UserService {
+  // GetUser retrieves a user by their userId.
   rpc GetUser (UserRequest) returns (UserResponse);
+
+  // CreateUser creates a new user with the provided details.
   rpc CreateUser (CreateUserRequest) returns (UserResponse);
 }
 
+// UserRequest is the request message for retrieving a user.
 message UserRequest {
-  string userId = 1;
+  string userId = 1; // The unique identifier of the user.
 }
 
+// CreateUserRequest is the request message for creating a new user.
 message CreateUserRequest {
-  string name = 1;
-  string email = 2;
+  string name = 1; // The name of the user.
+  string email = 2; // The email of the user.
 }
 
+// UserResponse is the response message containing user details.
 message UserResponse {
-  string userId = 1;
-  string name = 2;
-  string email = 3;
+  string userId = 1; // The unique identifier of the user.
+  string name = 2; // The name of the user.
+  string email = 3; // The email of the user.
 }

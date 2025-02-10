@@ -1,0 +1,20 @@
+version: '3.8'
+
+services:
+  user-service:
+    build: .
+    ports:
+      - "50051:50051"
+    environment:
+      - MONGO_URI=${MONGO_URI:-mongodb://mongo:27017/users}
+    depends_on:
+      - mongo
+
+  mongo:
+    image: mongo:4.4
+    container_name: mongo
+    ports:
+      - "27017:27017"
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=${MONGO_INITDB_ROOT_USERNAME:-root}
+      - MONGO_INITDB_ROOT_PASSWORD=${MONGO_INITDB_ROOT_PASSWORD:-example}
